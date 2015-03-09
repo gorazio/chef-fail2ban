@@ -3,7 +3,7 @@ maintainer        'Chef Software, Inc.'
 maintainer_email  'cookbooks@chef.io'
 license           'Apache 2.0'
 description       'Installs and configures fail2ban'
-version           '2.2.1'
+version           '2.2.2'
 
 recipe 'fail2ban', 'Installs and configures fail2ban'
 
