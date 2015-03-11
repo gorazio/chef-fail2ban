@@ -25,9 +25,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             "bantime" => "86400",
             "findtime" => "3600",
             "maxretry" => "5",
-            "port" => "http, https",
+            "port" => "80,443",
             "logpath" => "/var/log/syslog",
-            "banaction" => "ufw",
+            "banaction" => "ufw-new",
             "filter" => "nginx-http-auth"
           }
         }

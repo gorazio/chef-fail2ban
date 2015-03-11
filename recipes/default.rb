@@ -34,6 +34,10 @@ bash "install_fail2ban" do
   not_if "which fail2ban-client"
 end
 
+cookbook_file "/etc/fail2ban/action.d/ufw-new.conf" do
+  source "ufw-new.conf"
+end
+
 node['fail2ban']['filters'].each do |name, options|
   template "/etc/fail2ban/filter.d/#{name}.conf" do
     source "filter.conf.erb"
