@@ -17,22 +17,24 @@
 # limitations under the License.
 
 # fail2ban.conf configuration options
-default['fail2ban']['loglevel'] = 3
+default['fail2ban']['version'] = '0.9.1'
+default['fail2ban']['loglevel'] = 'INFO'
 default['fail2ban']['socket'] = '/var/run/fail2ban/fail2ban.sock'
 default['fail2ban']['logtarget'] = '/var/log/fail2ban.log'
 default['fail2ban']['pidfile'] = '/var/run/fail2ban/fail2ban.pid'
-
-# These values will only be printed to fail2ban.conf
-# if node['fail2ban']['logtarget'] is set to 'SYSLOG'
-default['fail2ban']['syslog_target'] = '/var/log/fail2ban.log'
-default['fail2ban']['syslog_facility'] = '1'
+default['fail2ban']['dbfile'] = '/var/lib/fail2ban/fail2ban.sqlite3'
+default['fail2ban']['dbpurgeage'] = 86400
 
 # jail.conf configuration options
 default['fail2ban']['ignoreip'] = '127.0.0.1/8'
-default['fail2ban']['findtime'] = 600
+default['fail2ban']['ignorecommand'] = ''
 default['fail2ban']['bantime'] = 300
+default['fail2ban']['findtime'] = 600
 default['fail2ban']['maxretry'] = 5
-default['fail2ban']['backend'] = 'polling'
+default['fail2ban']['backend'] = 'auto'
+default['fail2ban']['usedns'] = 'warn'
+default['fail2ban']['logencoding'] = 'auto'
+default['fail2ban']['enabled'] = 'false'
 default['fail2ban']['email'] = 'root@localhost'
 default['fail2ban']['action'] = 'action_'
 default['fail2ban']['banaction'] = 'iptables-multiport'
@@ -51,14 +53,16 @@ when 'debian'
   default['fail2ban']['auth_log'] = '/var/log/auth.log'
 end
 
-default['fail2ban']['services'] = {
-  'ssh' => {
-        'enabled' => 'true',
-        'port' => 'ssh',
-        'filter' => 'sshd',
-        'logpath' => node['fail2ban']['auth_log'],
-        'maxretry' => '6'
-     }
+
+#custom jail
+  # 'ssh' => {
+  #       'enabled' => 'true',
+  #       'port' => 'ssh',
+  #       'filter' => 'sshd',
+  #       'logpath' => node['fail2ban']['auth_log'],
+  #       'maxretry' => '6'
+  #    }
+default['fail2ban']['jails'] = {
 }
 
 case node['platform_family']

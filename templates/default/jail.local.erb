@@ -1,0 +1,6 @@
+[<%= @name %>]
+<% %w{ enabled bantime findtime maxretry port logpath protocol banaction filter}.each do |key| %>
+<% if @jail[key] %>
+<%=key%> = <%= @jail[key] %>
+<% end %>
+<% end %>
