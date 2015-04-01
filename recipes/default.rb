@@ -28,7 +28,7 @@ bash "install_fail2ban" do
   code "
   wget https://github.com/fail2ban/fail2ban/archive/#{ node.fail2ban.version }.zip
   unzip #{ node.fail2ban.version }.zip
-  cd fail2ban-0.9.1
+  cd fail2ban-#{ node.fail2ban.version }
   python setup.py install
   "
   not_if "which fail2ban-client"

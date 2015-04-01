@@ -1,12 +1,9 @@
 name              'fail2ban'
-maintainer        'Chef Software, Inc.'
-maintainer_email  'cookbooks@chef.io'
+maintainer        'gorazio'
+maintainer_email  'gmail@gorazio.com'
 license           'Apache 2.0'
 description       'Installs and configures fail2ban'
-version           '2.3.2'
-
-depends 'yum', '~> 3.0'
-depends 'yum-epel'
+version           '2.3.3'
 
 %w{ debian ubuntu redhat centos scientific amazon oracle fedora}.each do |os|
   supports os
