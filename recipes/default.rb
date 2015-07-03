@@ -34,6 +34,11 @@ bash "install_fail2ban" do
   not_if "which fail2ban-client"
 end
 
+directory '/var/run/fail2ban' do
+  recursive true
+  action :create
+end
+
 cookbook_file "/etc/fail2ban/action.d/ufw-new.conf" do
   source "ufw-new.conf"
 end
