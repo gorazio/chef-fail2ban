@@ -39,6 +39,11 @@ directory '/var/run/fail2ban' do
   action :create
 end
 
+directory '/etc/fail2ban/jail.d' do
+  recursive true
+  action :create
+end
+
 cookbook_file "/etc/fail2ban/action.d/ufw-new.conf" do
   source "ufw-new.conf"
 end
